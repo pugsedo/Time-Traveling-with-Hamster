@@ -1,0 +1,389 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://assets/sprites/event_card.png" type="Texture" id=1]
+[ext_resource path="res://scripts/gui.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/normal_info_0.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/sprites/event_card_btn.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/dice.png" type="Texture" id=5]
+[ext_resource path="res://scripts/dice.gd" type="Script" id=6]
+[ext_resource path="res://scripts/card.gd" type="Script" id=7]
+[ext_resource path="res://assets/resources/cards.tres" type="Resource" id=8]
+[ext_resource path="res://scripts/info_text_handler.gd" type="Script" id=9]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 15
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 40
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=20]
+default_font = SubResource( 19 )
+
+[sub_resource type="Animation" id=21]
+resource_name = "text_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/RichTextLabel:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "card_slide_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.470588 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 0.287175, 1 ),
+"update": 0,
+"values": [ Vector2( 520, 800 ), Vector2( 520, 80 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "card_slide_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.470588 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 3.00533, 1 ),
+"update": 0,
+"values": [ Vector2( 520, 80 ), Vector2( 520, 1000 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "dice_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.470588 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../Dice/Control/AnimatedSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.329877, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "dice_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Background/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.470588 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../Dice/Control/AnimatedSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.450625, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 16 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "dice_roll_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Dice/Control/AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "dice_roll_mid"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Dice/Control/AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -360.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "dice_roll_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Dice/Control/AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[node name="GUI" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.470588 )
+
+[node name="Dice" type="CanvasLayer" parent="."]
+script = ExtResource( 6 )
+
+[node name="Control" type="Control" parent="Dice"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Dice/Control"]
+position = Vector2( 20, 20 )
+scale = Vector2( 8, 8 )
+frames = SubResource( 13 )
+frame = 2
+
+[node name="Timer" type="Timer" parent="Dice"]
+wait_time = 0.1
+
+[node name="Card" type="CanvasLayer" parent="."]
+script = ExtResource( 7 )
+cards_res = ExtResource( 8 )
+
+[node name="Control" type="Control" parent="Card"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="Card/Control"]
+margin_left = 520.0
+margin_top = 1000.0
+margin_right = 1160.0
+margin_bottom = 1800.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="EventText" type="RichTextLabel" parent="Card/Control/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 56.0
+margin_top = 51.0
+margin_right = -56.0
+margin_bottom = -157.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource( 4 )
+text = "Your time machine broke down! "
+
+[node name="ResponseButton1" type="TextureButton" parent="Card/Control/TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = 144.0
+margin_right = 240.0
+margin_bottom = 320.0
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="ResponseText1" type="RichTextLabel" parent="Card/Control/TextureRect/ResponseButton1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 34.0
+margin_top = 18.0
+margin_right = -34.0
+margin_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource( 5 )
+text = "Your time machine broke down! "
+
+[node name="ResponseButton2" type="TextureButton" parent="Card/Control/TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -46.0
+margin_right = 240.0
+margin_bottom = 130.0
+action_mode = 0
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="ResponseText2" type="RichTextLabel" parent="Card/Control/TextureRect/ResponseButton2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 34.0
+margin_top = 18.0
+margin_right = -34.0
+margin_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource( 5 )
+text = "Your time machine broke down! "
+
+[node name="InfoText" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="Control" type="Control" parent="InfoText"]
+anchor_right = 1.0
+margin_bottom = 176.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InfoText/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 2
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = SubResource( 20 )
+bbcode_enabled = true
+bbcode_text = "[center][wave amp=50 freq=6]player"
+visible_characters = 0
+percent_visible = 0.0
+text = "player"
+scroll_active = false
+custom_effects = [ null ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InfoText"]
+anims/text_in = SubResource( 21 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Card/Control")
+anims/card_slide_in = SubResource( 1 )
+anims/card_slide_out = SubResource( 2 )
+anims/dice_in = SubResource( 14 )
+anims/dice_out = SubResource( 15 )
+anims/dice_roll_in = SubResource( 16 )
+anims/dice_roll_mid = SubResource( 17 )
+anims/dice_roll_out = SubResource( 18 )
+
+[connection signal="timeout" from="Dice/Timer" to="Dice" method="_on_Timer_timeout"]
+[connection signal="pressed" from="Card/Control/TextureRect/ResponseButton1" to="Card" method="_on_ResponseButton1_pressed"]
+[connection signal="pressed" from="Card/Control/TextureRect/ResponseButton2" to="Card" method="_on_ResponseButton2_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="Dice" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="Dice" method="_on_AnimationPlayer_animation_started"]
